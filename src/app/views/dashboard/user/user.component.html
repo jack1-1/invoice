@@ -1,0 +1,186 @@
+
+
+<app-nav-bar></app-nav-bar>
+<p>user works!</p>
+
+<div class="row ml-4">
+    <div class="card mt-3 pb-0">
+        <div class="card-body" style=" padding-top: 0; padding-left: 15px; padding-right: 15px;">
+            <div class="row mb-2">
+                <div class="col-md-12  card-header" style="font-weight: 700;">
+                    <i style="font-weight: 500;" class="fa fa-upload ml-2 "></i>Create Invoice
+                </div>
+            </div>
+
+            <div class="row">
+                <form class="col-md-12" [formGroup]="invoiceForm" (ngSubmit)="createInvoice()">
+                    <div class="row pl-3 pr-5">
+
+                        <div class="col-md-3 ">
+                            <label>Amount To Collect</label>
+                                <input
+                                type="number"
+                                formControlName="amount"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f['amount'].errors 
+                                  }"> 
+                            <div
+                            *ngIf="formSubmit && f['amount'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f['amount'].errors['required']">
+                            This field is required
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 ">
+                            <label>Invoice No</label>
+                                <input
+                                type="text"
+                                formControlName="id"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f['id'].errors 
+                                  }">
+                            <div
+                            *ngIf="formSubmit && f['id'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f['id'].errors['required']">
+                            This field is required
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label>Customer Mobile No.</label>
+                                <input
+                                type="text"
+                                formControlName="mobileNo"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                maxlength="10"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f['mobileNo'].errors 
+                                  }">
+                            <div
+                            *ngIf="formSubmit && f['mobileNo'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f['mobileNo'].errors['required']">
+                            This field is required
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label>Customer EmailID</label>
+                                <input
+                                type="text"
+                                formControlName="emailID"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f['emailID'].errors 
+                                  }">
+                            <div
+                            *ngIf="formSubmit && f['emailID'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f['emailID'].errors['required']">
+                            This field is required
+                            </div>
+                            <div *ngIf="f['emailID'].errors['pattern']">
+                            Enter valid email pattern
+                            </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="checkP1" class="col-md-3 mt-2">
+                            <label>Additional Param 1</label>
+                                <input
+                                type="text"
+                                formControlName="addlParam1"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f['addlParam1'].errors 
+                                  }" >
+                            <div
+                            *ngIf="formSubmit && f['addlParam1'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f['addlParam1'].errors['required']">
+                            This field is required
+                            </div>
+                            </div>
+                        </div>
+
+                        <div  class="col-md-3 mt-2">
+                            <label>Additional Param 2</label>
+                                <input
+                                type="text"
+                                formControlName="addlParam2"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f['addlParam2'].errors 
+                                  }" >
+                            <div
+                            *ngIf="formSubmit && f['addlParam2'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f['addlParam2'].errors['required']">
+                            This field is required
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-3 mt-2">
+                            <label>Service Amount</label>
+                                <input 
+                                type="number"
+                                formControlName="serviceAmount"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f['serviceAmount'].errors 
+                                  }"> 
+                            <div
+                            *ngIf="formSubmit && f['serviceAmount'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f['serviceAmount'].errors['required']">
+                            This field is required
+                            </div>
+                            </div>
+                        </div> -->
+
+                        <!-- <div class="col-md-3 mt-2">
+                            <label>Basic Amount</label>
+                                <input 
+                                type="number"
+                                formControlName="basicAmount"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f['basicAmount'].errors 
+                                  }">
+                            <div
+                            *ngIf="formSubmit && f['basicAmount'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f['basicAmount'].errors['required']">
+                            This field is required
+                            </div>
+                            </div>
+                        </div> -->
+
+                        
+
+                        <div class="col-md-7 offset-md-5 mt-5">
+                            <button class="btn btn-success" type="submit">Send Invoice</button>
+                            <button class="btn btn-primary ml-2" type="button" (click)="clearForm()">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+         </div>
+    </div>
+</div>

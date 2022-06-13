@@ -1,0 +1,433 @@
+
+<app-nav-bar></app-nav-bar>
+<p>admin works!</p>
+
+<div class="row">
+    <div class="card mt-3 pb-0">
+        <div class="card-body" style=" padding-top: 0; padding-left: 15px; padding-right: 15px;">
+            <div class="row mb-2">
+                <div class="col-md-12  card-header" style="font-weight: 700;">
+                    <i style="font-weight: 500;" class="fa fa-th-large ml-2 "></i>Configure Invoice
+                </div>
+            </div>
+
+            <div class="row">
+                <form class="col-md-12" [formGroup]="ConfigInvoiceForm1" (ngSubmit)="saveInvoice()">
+                    <div class="row pl-3 pr-5">
+                        <div class="col-md-2 ">
+                            <label>Field Name</label>
+                                <input
+                                type="text"
+                                formControlName="fieldName"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0">  
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label>Display Name</label>
+                                <input
+                                type="text"
+                                formControlName="displayName"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f1['displayName'].errors 
+                                  }">
+                            <div
+                            *ngIf="formSubmit && f1['displayName'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f1['displayName'].errors['required']">
+                                Displayname is required for AddParam2 field
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label>Position</label>
+                                <input
+                                type="text"
+                                formControlName="position"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0">
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label style="font-weight: 500;">Input Type {{value}}</label> 
+                        <select class="form-control custom-select mb-2 mr-sm-2 mb-sm-0" formControlName="inputType"
+                            ngDefaultControl [(ngModel)]='value' >
+                            <option *ngFor="let val of levels" [value]="val">{{val}}</option>
+                        </select>
+                        </div>
+
+                        <div class="col-md-2 d-inline-flex">
+                            <input type="checkbox" class="form-control" formControlName="userMandatory" (change)="ch1($event.target)" style="width: 100px; height: 27%; margin-top: 35px; outline: none;border:none;box-shadow: none;">
+                            <h5 style="margin-top: 33px; margin-left: -31px; font-size: 0.9vw;">Is Required</h5>
+                        </div>
+
+                        <div class="col-md-2 d-inline-flex">
+                            <input type="checkbox" class="form-control" formControlName="configured" style="width: 100px; height: 27%; margin-top: 35px;outline: none;border:none;box-shadow: none;">
+                            <h5 style="margin-top: 33px; margin-left: -31px; font-size: 0.9vw">Is Configured</h5>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- second form -->
+            <div class="row mt-3">
+                <form class="col-md-12" [formGroup]="ConfigInvoiceForm2" (ngSubmit)="saveInvoice()">
+                    <div class="row pl-3 pr-5">
+                        <div class="col-md-2 ">
+                            <label>Field Name</label>
+                                <input
+                                type="text"
+                                formControlName="fieldName"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0">
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label>Display Name</label>
+                                <input
+                                type="text"
+                                formControlName="displayName"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f2['displayName'].errors 
+                                  }">
+                            <div
+                            *ngIf="formSubmit && f2['displayName'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f2['displayName'].errors['required']">
+                                Displayname is required for Amount field
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label>Position</label>
+                                <input
+                                type="text"
+                                formControlName="position"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0">
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label style="font-weight: 500;">Input Type {{value1}}</label> 
+                        <select id="s2" class="form-control custom-select mb-2 mr-sm-2 mb-sm-0" formControlName="inputType"
+                            ngDefaultControl [(ngModel)]='value1' >
+                            <option *ngFor="let val of levels" [value]="val">{{val}}</option>
+                        </select>
+                        </div>
+
+                        <div class="col-md-2 d-inline-flex">
+                            <input type="checkbox" class="form-control" formControlName="userMandatory" (change)="ch2($event.target)" style="width: 100px; height: 27%; margin-top: 35px; outline: none;border:none;box-shadow: none;">
+                            <h5 style="margin-top: 33px; margin-left: -31px;font-size: 0.9vw">Is Required</h5>
+                        </div>
+
+                        <div class="col-md-2 d-inline-flex">
+                            <input type="checkbox" class="form-control" formControlName="configured" style="width: 100px; height: 27%; margin-top: 35px;outline: none;border:none;box-shadow: none;">
+                            <h5 style="margin-top: 33px; margin-left: -31px;font-size: 0.9vw">Is Configured</h5>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- third -->
+            <div class="row mt-3">
+                <form class="col-md-12" [formGroup]="ConfigInvoiceForm3" (ngSubmit)="saveInvoice()">
+                    <div class="row pl-3 pr-5">
+                        <div class="col-md-2 ">
+                            <label>Field Name</label>
+                                <input
+                                type="text"
+                                formControlName="fieldName"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0">
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label>Display Name</label>
+                                <input
+                                type="text"
+                                formControlName="displayName"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f3['displayName'].errors 
+                                  }">
+                            <div
+                            *ngIf="formSubmit && f3['displayName'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f3['displayName'].errors['required']">
+                                Displayname is required for Service Amount field
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label>Position</label>
+                                <input
+                                type="text"
+                                formControlName="position"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0">
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label style="font-weight: 500;">Input Type {{value2}}</label> 
+                        <select id="s2" class="form-control custom-select mb-2 mr-sm-2 mb-sm-0" formControlName="inputType"
+                            ngDefaultControl [(ngModel)]='value2' >
+                            <option *ngFor="let val of levels" [value]="val">{{val}}</option>
+                        </select>
+                        </div>
+
+                        <div class="col-md-2 d-inline-flex">
+                            <input type="checkbox" class="form-control" formControlName="userMandatory" (change)="ch3($event.target)" style="width: 100px; height: 27%; margin-top: 35px; outline: none;border:none;box-shadow: none;">
+                            <h5 style="margin-top: 33px; margin-left: -31px;font-size: 0.9vw">Is Required</h5>
+                        </div>
+
+                        <div class="col-md-2 d-inline-flex">
+                            <input type="checkbox" class="form-control" formControlName="configured" style="width: 100px; height: 27%; margin-top: 35px;outline: none;border:none;box-shadow: none;">
+                            <h5 style="margin-top: 33px; margin-left: -31px;font-size: 0.9vw">Is Configured</h5>
+                        </div> 
+                    </div>
+                </form>
+            </div>
+            <!-- fourth -->
+            <div class="row mt-3">
+                <form class="col-md-12" [formGroup]="ConfigInvoiceForm4" (ngSubmit)="saveInvoice()">
+                    <div class="row pl-3 pr-5">
+                        <div class="col-md-2 ">
+                            <label>Field Name</label>
+                                <input
+                                type="text"
+                                formControlName="fieldName"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0">
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label>Display Name</label>
+                                <input
+                                type="text"
+                                formControlName="displayName"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f4['displayName'].errors 
+                                  }">
+                                  <div
+                            *ngIf="formSubmit && f4['displayName'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f4['displayName'].errors['required']">
+                                Displayname is required for Email ID field
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label>Position</label>
+                                <input
+                                type="text"
+                                formControlName="position"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0">
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label style="font-weight: 500;">Input Type {{value6}}</label> 
+                        <select id="s2" class="form-control custom-select mb-2 mr-sm-2 mb-sm-0" formControlName="inputType"
+                            ngDefaultControl [(ngModel)]='value6' >
+                            <option *ngFor="let val of levels" [value]="val">{{val}}</option>
+                        </select>
+                        </div>
+
+                        <div class="col-md-2 d-inline-flex">
+                            <input type="checkbox" class="form-control" (change)="ch4($event.target)" formControlName="userMandatory" style="width: 100px; height: 27%; margin-top: 35px; outline: none;border:none;box-shadow: none;">
+                            <h5 style="margin-top: 33px; margin-left: -31px;font-size: 0.9vw">Is Required</h5>
+                        </div>
+
+                        <div class="col-md-2 d-inline-flex">
+                            <input type="checkbox" class="form-control" formControlName="configured" style="width: 100px; height: 27%; margin-top: 35px;outline: none;border:none;box-shadow: none;">
+                            <h5 style="margin-top: 33px; margin-left: -31px;font-size: 0.9vw">Is Configured</h5>
+                        </div> 
+                    </div>
+                </form>
+            </div>
+            <!-- fifth -->
+            <div class="row mt-3">
+                <form class="col-md-12" [formGroup]="ConfigInvoiceForm5" (ngSubmit)="saveInvoice()">
+                    <div class="row pl-3 pr-5">
+                        <div class="col-md-2 ">
+                            <label>Field Name</label>
+                                <input
+                                type="text"
+                                formControlName="fieldName"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0">
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label>Display Name</label>
+                                <input
+                                type="text"
+                                formControlName="displayName"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f5['displayName'].errors 
+                                  }">
+                            <div
+                            *ngIf="formSubmit && f5['displayName'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f5['displayName'].errors['required']">
+                                Displayname is required for ID field
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label>Position</label>
+                                <input
+                                type="text"
+                                formControlName="position"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0">
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label style="font-weight: 500;">Input Type {{value3}}</label> 
+                        <select id="s2" class="form-control custom-select mb-2 mr-sm-2 mb-sm-0" formControlName="inputType"
+                            ngDefaultControl [(ngModel)]='value3' >
+                            <option *ngFor="let val of levels" [value]="val">{{val}}</option>
+                        </select>
+                        </div>
+
+                        <div class="col-md-2 d-inline-flex">
+                            <input type="checkbox" class="form-control" (change)="ch5($event.target)" formControlName="userMandatory" style="width: 100px; height: 27%; margin-top: 35px; outline: none;border:none;box-shadow: none;" >
+                            <h5 style="margin-top: 33px; margin-left: -31px;font-size: 0.9vw">Is Required</h5>
+                        </div>
+
+                        <div class="col-md-2 d-inline-flex">
+                            <input type="checkbox" class="form-control"  formControlName="configured"  style="width: 100px; height: 27%; margin-top: 35px;outline: none;border:none;box-shadow: none;" >
+                            <h5 style="margin-top: 33px; margin-left: -31px;font-size: 0.9vw">Is Configured</h5>
+                        </div> 
+                    </div>
+                </form>
+            </div>
+            <!-- sixth -->
+            <div class="row mt-3">
+                <form class="col-md-12" [formGroup]="ConfigInvoiceForm6" (ngSubmit)="saveInvoice()">
+                    <div class="row pl-3 pr-5">
+                        <div class="col-md-2 ">
+                            <label>Field Name</label>
+                                <input
+                                type="text"
+                                formControlName="fieldName"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0">
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label>Display Name</label>
+                                <input
+                                type="text"
+                                formControlName="displayName"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f6['displayName'].errors 
+                                  }">
+                                  <div
+                            *ngIf="formSubmit && f6['displayName'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f6['displayName'].errors['required']">
+                                Displayname is required for Mobile No. field
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label>Position</label>
+                                <input
+                                type="text"
+                                formControlName="position"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0">
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label style="font-weight: 500;">Input Type {{value4}}</label> 
+                        <select id="s2" class="form-control custom-select mb-2 mr-sm-2 mb-sm-0" formControlName="inputType"
+                            ngDefaultControl [(ngModel)]='value4' >
+                            <option *ngFor="let val of levels" [value]="val">{{val}}</option>
+                        </select>
+                        </div>
+
+                        <div class="col-md-2 d-inline-flex">
+                            <input type="checkbox" class="form-control" (change)="ch6($event.target)" formControlName="userMandatory" style="width: 100px; height: 27%; margin-top: 35px; outline: none;border:none;box-shadow: none;">
+                            <h5 style="margin-top: 33px; margin-left: -31px;font-size: 0.9vw">Is Required</h5>
+                        </div>
+
+                        <div class="col-md-2 d-inline-flex">
+                            <input type="checkbox" class="form-control" formControlName="configured" style="width: 100px; height: 27%; margin-top: 35px;outline: none;border:none;box-shadow: none;">
+                            <h5 style="margin-top: 33px; margin-left: -31px;font-size: 0.9vw">Is Configured</h5>
+                        </div> 
+                    </div>
+                </form>
+            </div>
+            <!-- seventh -->
+            <div class="row mt-3">
+                <form class="col-md-12" [formGroup]="ConfigInvoiceForm7" (ngSubmit)="saveInvoice()">
+                    <div class="row pl-3 pr-5">
+                        <div class="col-md-2 ">
+                            <label>Field Name</label>
+                                <input
+                                type="text"
+                                formControlName="fieldName"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0">
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label>Display Name</label>
+                                <input
+                                type="text"
+                                formControlName="displayName"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                [ngClass]="{ 
+                                    'is-invalid':formSubmit && f7['displayName'].errors 
+                                  }">
+                            <div
+                            *ngIf="formSubmit && f7['displayName'].errors"
+                            class="invalid-feedback"
+                            >
+                            <div *ngIf="f7['displayName'].errors['required']">
+                                Displayname is required for AddParam1 field
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label>Position</label>
+                                <input
+                                type="text"
+                                formControlName="position"
+                                class="form-control mb-2 mr-sm-2 mb-sm-0">
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label style="font-weight: 500;">Input Type {{value5}}</label> 
+                        <select id="s2" class="form-control custom-select mb-2 mr-sm-2 mb-sm-0" formControlName="inputType"
+                            ngDefaultControl [(ngModel)]='value5' >
+                            <option *ngFor="let val of levels" [value]="val">{{val}}</option>
+                        </select>
+                        </div>
+
+                        <div class="col-md-2 d-inline-flex">
+                            <input type="checkbox" class="form-control"  formControlName="userMandatory" style="width: 100px; height: 27%; margin-top: 35px; outline: none;border:none;box-shadow: none;">
+                            <h5 style="margin-top: 33px; margin-left: -31px;font-size: 0.9vw">Is Required</h5>
+                        </div>
+
+                        <div class="col-md-2 d-inline-flex">
+                            <input type="checkbox" class="form-control" formControlName="configured" style="width: 100px; height: 27%; margin-top: 35px;outline: none;border:none;box-shadow: none;">
+                            <h5 style="margin-top: 33px; margin-left: -31px;font-size: 0.9vw">Is Configured</h5>
+                        </div> 
+
+                        <div class="col-md-2 mt-5">
+                           <button class="btn btn-primary ml-2" type="button"  (click)="saveInvoice()" >Save</button>
+                           <!-- <button class="btn btn-success ml-2" type="button"  (click)="clear()" >Clear</button> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
